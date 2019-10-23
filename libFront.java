@@ -31,6 +31,9 @@ public class libFront {
         System.out.println("===========================================================");
         while (!done){
 
+            int bookid;
+            int result;
+
             System.out.println("0.) Exit");
             System.out.println("1.) Check out a book");
             System.out.println("2.) Check in a book");
@@ -42,10 +45,45 @@ public class libFront {
                     done = true;
                     break;
                 case 1:
+
                     newLib.displayBooks();
+                    System.out.println("Enter the ID of the book you want to check out:");
+                    bookid = s.nextInt();
+                    result = newLib.checkOut(bookid);
+
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+                    switch (result){
+                        case -1:
+                            System.out.println("THAT ID DOES NOT EXIST");
+                            break;
+                        case 0:
+                            break;
+                        case 1:
+                            System.out.println("CHECK OUT SUCCESSFUL. REMEMBER TO RETURN IT");
+                            break;
+
+                    }
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
                     break;
                 case 2:
                     newLib.displayBooks();
+                    System.out.println("Enter the ID of the book you want to check in:");
+                    bookid = s.nextInt();
+                    result = newLib.checkOut(bookid);
+                    
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+                    switch (result){
+                        case -1:
+                            System.out.println("THAT ID DOES NOT EXIST");
+                            break;
+                        case 0:
+                            break;
+                        case 1:
+                            System.out.println("CHECK IN SUCCESSFUL. THANKS FOR RETURNING IT");
+                            break;
+
+                    }
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
                     break;
                 case 3:
                     newLib.displayBooks();

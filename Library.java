@@ -12,31 +12,40 @@ public class Library {
     }
 
 
-    public void checkOut(Book b){
+    public int checkOut(int id){
+
+        Book b = library_books.get(id);
+        if (b == null){
+            return -1;
+        }
         if (b.isCheckedOut()){
+
             System.out.println(b.getTitle() + " HAS ALREADY BEEN CHECKED OUT");
-            return;
+            return 0;
         }
         else{
             b.changeCheckStatus();
-            System.out.println("CHECK OUT SUCCESSFUL. REMEMBER TO RETURN IT");
-            return;
+            return 1;
         }
     }
 
-    public void checkIn(Book b){
-        if (library_books.get(b.getID()) == null){
+    public int checkIn(int id){
+        Book b = library_books.get(id);
+        if (b == null){
             System.out.println("That book is not in this library");
+            return -1;
         }
         else{
             //If book was checked out, check it back in
             if (b.isCheckedOut()){
                 System.out.println("Thank you for returning the book");
                 b.changeCheckStatus();
+                return 1;
             }
             //If bookt wasn't checked out in the first place, it can't be checked in
             else{
                 System.out.println("This book has not been checked out yet");
+                return 0;
             }
         }
     }
