@@ -31,8 +31,7 @@ public class libFront {
         System.out.println("===========================================================");
         while (!done){
 
-            int bookid;
-            int result;
+            int bookid = -1;
 
             System.out.println("0.) Exit");
             System.out.println("1.) Check out a book");
@@ -41,22 +40,27 @@ public class libFront {
             input = s.nextInt();
 
             switch (input){
+
+                //Leave the system
                 case 0:
                     done = true;
                     break;
+                
+                //Display the books the library has then check one out
                 case 1:
 
                     newLib.displayBooks();
                     System.out.println("Enter the ID of the book you want to check out:");
                     bookid = s.nextInt();
-                    result = newLib.checkOut(bookid);
+                    
 
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-                    switch (result){
+                    switch (newLib.checkOut(bookid)){
                         case -1:
                             System.out.println("THAT ID DOES NOT EXIST");
                             break;
                         case 0:
+                            System.out.println(newLib.getBookTitle(bookid) + " HAS BEEN CHECKED OUT ALREADY");
                             break;
                         case 1:
                             System.out.println("CHECK OUT SUCCESSFUL. REMEMBER TO RETURN IT");
@@ -65,18 +69,21 @@ public class libFront {
                     }
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
                     break;
+                
+                //Display the books the library has, then check one back in
                 case 2:
                     newLib.displayBooks();
                     System.out.println("Enter the ID of the book you want to check in:");
                     bookid = s.nextInt();
-                    result = newLib.checkOut(bookid);
+                    
                     
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-                    switch (result){
+                    switch (newLib.checkIn(bookid)){
                         case -1:
                             System.out.println("THAT ID DOES NOT EXIST");
                             break;
                         case 0:
+                            System.out.println(newLib.getBookTitle(bookid) + " HAS ALREADY BEEN CHECKED IN");
                             break;
                         case 1:
                             System.out.println("CHECK IN SUCCESSFUL. THANKS FOR RETURNING IT");
@@ -85,6 +92,8 @@ public class libFront {
                     }
                     System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
                     break;
+
+                //Simply display the books
                 case 3:
                     newLib.displayBooks();
                     break;
@@ -95,6 +104,7 @@ public class libFront {
             }
 
             System.out.println("===========================================================");
+            System.out.println();
 
         }
 

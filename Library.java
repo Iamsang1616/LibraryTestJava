@@ -20,7 +20,6 @@ public class Library {
         }
         if (b.isCheckedOut()){
 
-            System.out.println(b.getTitle() + " HAS ALREADY BEEN CHECKED OUT");
             return 0;
         }
         else{
@@ -38,13 +37,13 @@ public class Library {
         else{
             //If book was checked out, check it back in
             if (b.isCheckedOut()){
-                System.out.println("Thank you for returning the book");
+                //System.out.println("Thank you for returning the book");
                 b.changeCheckStatus();
                 return 1;
             }
-            //If bookt wasn't checked out in the first place, it can't be checked in
+            //If book wasn't checked out in the first place, it can't be checked in
             else{
-                System.out.println("This book has not been checked out yet");
+                //System.out.println("This book has not been checked out yet");
                 return 0;
             }
         }
@@ -58,6 +57,9 @@ public class Library {
         });
     }
 
+    public String getBookTitle(int id){
+        return library_books.get(id).getTitle();
+    }
    
 
     //vector representing all the books in the library?
